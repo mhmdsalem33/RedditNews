@@ -7,4 +7,5 @@ sealed class HomeViewState {
     object Loading                                 : HomeViewState()
     data class Success(val data : List<Children> ) : HomeViewState()
     data class Error(val message : String)         : HomeViewState()
+    object EmptyData                               : HomeViewState()
 }

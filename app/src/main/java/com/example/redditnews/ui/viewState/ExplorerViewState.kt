@@ -7,4 +7,5 @@ sealed class ExplorerViewState {
     object Loading                                   : ExplorerViewState()
     data class Success(val data : List<Children> )   : ExplorerViewState()
     data class Error(val message : String)           : ExplorerViewState()
+    object EmptyData                                 : ExplorerViewState()
 }

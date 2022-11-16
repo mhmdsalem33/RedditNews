@@ -36,8 +36,10 @@ class HomeViewModel @Inject constructor (
                 if (response.isSuccessful)
                 {
                     response.body()?.data?.children?.let {
+
                         _getArticlesStateFlow.emit(HomeViewState.Success(it))
-                    }
+
+                    } ?: _getArticlesStateFlow.emit(HomeViewState.EmptyData)
                 }
                 else
                 {

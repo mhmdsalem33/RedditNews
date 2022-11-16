@@ -89,7 +89,6 @@ class HomeFragment : Fragment() {
     }
 
 
-
     private fun setupArticleRecView() {
         binding.homeRecView.apply {
             layoutManager = LinearLayoutManager( requireContext() , RecyclerView.VERTICAL , false)
@@ -121,7 +120,7 @@ class HomeFragment : Fragment() {
                           }
                         }
                     }
-                    is HomeViewState.Error   -> { Log.d("testApp" ,it.message) }
+                    is HomeViewState.Error   -> { Log.d("testApp" , it.message) }
                     else -> Unit
                 }
             }

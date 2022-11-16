@@ -39,7 +39,7 @@ class ExplorerViewModel @Inject constructor(
                 .collect{ response ->
                     response.body()?.data?.children?.let {
                         _getExplorerArticles.emit(ExplorerViewState.Success(it))
-                    }
+                    } ?: _getExplorerArticles.emit(ExplorerViewState.EmptyData)
                 }
         }
         else
