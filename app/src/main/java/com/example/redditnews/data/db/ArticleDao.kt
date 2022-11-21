@@ -2,6 +2,7 @@ package com.example.redditnews.data.db
 
 import androidx.room.*
 import com.example.redditnews.domain.models.Article
+import com.example.redditnews.domain.models.ArticleFavorite
 import kotlinx.coroutines.flow.Flow
 
 
@@ -19,6 +20,8 @@ interface ArticleDao {
 
     @Query("SELECT * FROM articleInformation")
     fun getAllSavedArticles() : Flow<List<Article>>
+
+
 
 }
 

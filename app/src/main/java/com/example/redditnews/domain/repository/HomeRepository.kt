@@ -8,13 +8,15 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val redditApi: RedditApi ,
-    private val db       : ArticleDatabase
+    private val db       : ArticleDatabase,
     )
 {
+
+
     private val articleDao = db.articleDao()
 
-
     suspend fun getArticles()                  = redditApi.getArticles()
+
     suspend fun upsert(article: List<Article>) = articleDao.upsertArticles(article)
     val getAllSavedArticles                    = articleDao.getAllSavedArticles()
 }

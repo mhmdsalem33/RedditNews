@@ -42,7 +42,11 @@
             android:id="@+id/action_explorerFragment_to_articleFragment4"
             app:destination="@id/articleFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.redditnews.ui.fragments.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 
 
 </navigation>

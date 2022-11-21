@@ -28,6 +28,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_home"
         android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="?actionBarSize"
         />
 
 

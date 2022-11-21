@@ -9,12 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.redditnews.databinding.ArticleRowBinding
 import com.example.redditnews.domain.models.Article
-
+import com.example.redditnews.ui.activites.MainActivity
+import com.example.redditnews.ui.viewmodels.HomeViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class ArticlesAdapter () :RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
-   lateinit var onItemArticleClick : (( Article ) -> Unit )
+
+
+
+   lateinit var onItemArticleClick      : (( Article ) -> Unit )
+   lateinit var onFavoriteArticlesCLick : (( Article ) -> Unit )
+
 
    private val diffUtilCallback = object :DiffUtil.ItemCallback<Article>() {
       override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -41,6 +49,11 @@ class ArticlesAdapter () :RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
       holder.itemView.setOnClickListener {
           onItemArticleClick.invoke(data)
       }
+
+       holder.binding.addFav.setOnClickListener {
+           onFavoriteArticlesCLick.invoke(data)
+       }
+
    }
    override fun getItemCount()  = differ.currentList.size
 }

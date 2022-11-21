@@ -13,7 +13,6 @@ class TypeConverter {
             return ""
         return attribute as String
     }
-
     @TypeConverter
     fun fromStringToAny(attribute: String?) :Any
     {

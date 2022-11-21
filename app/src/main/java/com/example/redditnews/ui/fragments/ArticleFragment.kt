@@ -14,7 +14,7 @@ import com.example.redditnews.databinding.FragmentArticleBinding
 class ArticleFragment : Fragment() {
 
     private lateinit var binding   : FragmentArticleBinding
-    private lateinit var title     : String
+    private var title     : String ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +34,11 @@ class ArticleFragment : Fragment() {
         onHandleOnBackPressed()
         setArticleInformationInViews()
 
-
     }
 
     private fun setArticleInformationInViews() {
         binding.articleTitle.text = title
     }
-
 
     private fun fetchArticleInformation() {
         val data  = arguments
@@ -50,7 +48,6 @@ class ArticleFragment : Fragment() {
             (activity as MainActivity).supportActionBar?.title = title
         }
     }
-
 
     private fun onHandleOnBackPressed() {
         val callback = object : OnBackPressedCallback(true)

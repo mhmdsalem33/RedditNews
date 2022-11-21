@@ -8,7 +8,7 @@ import com.example.redditnews.databinding.ArticleRowBinding
 class ArticlesExplorerAdapter ( private val articleListExplorer: List<ArticleDatabaseExplorer>) :RecyclerView.Adapter<ArticlesExplorerAdapter.ViewHolder>() {
 
     lateinit var onArticleExploreClick : ((ArticleDatabaseExplorer) -> Unit)
-
+    lateinit var onArticleFavoriteExploreClick :((ArticleDatabaseExplorer) -> Unit)
     inner class ViewHolder (  val binding : ArticleRowBinding) :RecyclerView.ViewHolder(binding.root)
 
    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +25,12 @@ class ArticlesExplorerAdapter ( private val articleListExplorer: List<ArticleDat
        holder.itemView.setOnClickListener {
           onArticleExploreClick.invoke(article)
        }
+
+
+       holder.binding.addFav.setOnClickListener {
+           onArticleFavoriteExploreClick.invoke(article)
+       }
+
    }
    override fun getItemCount()  = articleListExplorer.size
 }

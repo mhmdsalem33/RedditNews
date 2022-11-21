@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.34814814814814815" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/article_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/favorite_row.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/fragment_article.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/fragment_explorer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/fragment_favorite.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Mohamed/AndroidStudioProjects/RedditNews/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
       </map>

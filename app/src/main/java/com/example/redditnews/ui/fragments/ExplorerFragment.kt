@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redditnews.R
 import com.example.redditnews.data.realmdb.ArticleDatabaseExplorer
 import com.example.redditnews.databinding.FragmentExplorerBinding
+import com.example.redditnews.domain.models.ArticleFavorite
 import com.example.redditnews.ui.adapters.ArticlesExplorerAdapter
 import com.example.redditnews.ui.viewState.ExplorerViewState
 import com.example.redditnews.ui.viewmodels.ExplorerViewModel
+import com.example.redditnews.ui.viewmodels.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -27,6 +30,7 @@ class ExplorerFragment : Fragment() {
     private lateinit var binding : FragmentExplorerBinding
     private val explorerMvvm     : ExplorerViewModel by viewModels()
     private lateinit var articlesExplorerAdapter : ArticlesExplorerAdapter
+    private val favoriteMvvm : FavoriteViewModel by viewModels()
 
     var realmId : Int = 0
 
@@ -48,7 +52,10 @@ class ExplorerFragment : Fragment() {
         setupExplorerArticlesRecView()
         fetchArticlesDataAndSaveIt()
         onArticlesExplorerClick()
+        onFavoriteExplorerClick()
     }
+
+
 
     private fun initRealmDatabase() {
         Realm.init(requireContext())
@@ -109,6 +116,9 @@ class ExplorerFragment : Fragment() {
                     is ExplorerViewState.Error -> {
                         Log.d("testApp" , "articles explore ${it.message}")
                     }
+                    is ExplorerViewState.EmptyData ->{
+                        Log.d("testApp" , "Empty data")
+                    }
                     else -> Unit
                 }
             }
@@ -124,4 +134,16 @@ class ExplorerFragment : Fragment() {
             findNavController().navigate(R.id.articleFragment , bundle)
         }
     }
+
+
+    private fun onFavoriteExplorerClick() {
+        articlesExplorerAdapter.onArticleFavoriteExploreClick = {
+            val articles = ArticleFavorite(id =   it.id.toString() , title = it.title)
+           lifecycleScope.launchWhenStarted {
+               favoriteMvvm.upsertFavoriteArticles(articles)
+               Toast.makeText(requireContext(), "Article Saved", Toast.LENGTH_SHORT).show()
+           }
+        }
+    }
+
 }

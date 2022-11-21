@@ -17,4 +17,5 @@ object DatabaseModule {
     @Provides
     fun provideDatabase(app  : Application) : ArticleDatabase =
         Room.databaseBuilder(app , ArticleDatabase::class.java , "article.db").build()
+
 }

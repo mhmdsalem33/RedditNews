@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ExplorerViewModel @Inject constructor(
     private val explorerRepository: ExplorerRepository,
-    private val application: Application
+    private val application       : Application
     ) : ViewModel() {
 
     private var _getExplorerArticles = MutableStateFlow<ExplorerViewState>(ExplorerViewState.Idle)
@@ -37,9 +37,17 @@ class ExplorerViewModel @Inject constructor(
                     Log.d("testApp" ,  e.message.toString())
                 }
                 .collect{ response ->
-                    response.body()?.data?.children?.let {
-                        _getExplorerArticles.emit(ExplorerViewState.Success(it))
-                    } ?: _getExplorerArticles.emit(ExplorerViewState.EmptyData)
+                  if (response.isSuccessful)
+                  {
+                      response.body()?.data?.children?.let {
+                          _getExplorerArticles.emit(ExplorerViewState.Success(it))
+
+                      } ?: _getExplorerArticles.emit(ExplorerViewState.EmptyData)
+                  }
+                    else
+                  {
+                      Log.d("testApp" , "response code articles explorer" + response.code().toString())
+                  }
                 }
         }
         else

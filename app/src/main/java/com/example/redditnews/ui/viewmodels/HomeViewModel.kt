@@ -19,11 +19,12 @@ class HomeViewModel @Inject constructor (
     private val application   : Application
     ) :ViewModel()  {
 
+
     private var _getArticlesStateFlow = MutableStateFlow<HomeViewState>(HomeViewState.Idle)
     var getArticlesStateFlow : StateFlow<HomeViewState> = _getArticlesStateFlow
 
     init {
-        getArticles()
+          getArticles()
     }
 
      private fun getArticles() = viewModelScope.launch {
@@ -36,14 +37,13 @@ class HomeViewModel @Inject constructor (
                 if (response.isSuccessful)
                 {
                     response.body()?.data?.children?.let {
-
                         _getArticlesStateFlow.emit(HomeViewState.Success(it))
 
                     } ?: _getArticlesStateFlow.emit(HomeViewState.EmptyData)
                 }
                 else
                 {
-                    Log.d("testApp" , response.code().toString())
+                    Log.d("testApp" ,"Home articles response code "+ response.code().toString())
                     _getArticlesStateFlow.emit(HomeViewState.Error(message = response.message().toString()))
                 }
             }
@@ -60,5 +60,7 @@ class HomeViewModel @Inject constructor (
 
     suspend fun upsertArticle(article: List<Article>) = viewModelScope.launch { homeRepository.upsert(article) }
     fun getAllSavedArticles()                         = homeRepository.getAllSavedArticles
+
+
 
 }

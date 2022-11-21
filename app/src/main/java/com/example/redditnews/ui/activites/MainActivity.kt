@@ -10,11 +10,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.redditnews.R
 import com.example.redditnews.databinding.ActivityMainBinding
+import com.example.redditnews.ui.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
+     val homeMvvm : HomeViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
